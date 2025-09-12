@@ -6,60 +6,69 @@
     <title>Abdullah Rashid | Content Creator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            /* Deep Ember & Crimson Color Scheme */
-            --bg-dark: #121212; /* Deep ember, almost black */
-            --bg-gradient-start: #1a0808; /* Hint of crimson in the dark */
-            --card-bg: rgba(26, 26, 26, 0.6); /* Translucent dark card */
-            --border-color: rgba(255, 69, 0, 0.2); /* Crimson-tinted border */
-            --text-primary: #F0F2F5; /* Soft, off-white text */
-            --text-secondary: #a0a0a0; /* Muted grey for secondary text */
-            --accent-crimson: #DC143C; /* Vibrant Crimson */
-            --shadow-color: rgba(220, 20, 60, 0.3); /* Crimson glow for shadows */
+            --bg-light: #f5f5f7;
+            --bg-gradient-end: #e8e8ed;
+            --card-bg: rgba(255, 255, 255, 0.65);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --accent-blue: #0071e3;
+            --shadow-color: rgba(0, 0, 0, 0.06);
+            --hover-light-grey: #e0e0e0;
         }
 
-        /* Smooth scroll and base styling */
         html {
             scroll-behavior: smooth;
         }
 
+        @keyframes subtleGradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-gradient-start) 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-gradient-end), #f0f2f5);
+            background-size: 200% 200%; /* Required for gradient animation */
+            animation: subtleGradientAnimation 15s ease-in-out infinite; /* Looping pattern animation */
             color: var(--text-primary);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 40px 24px;
             box-sizing: border-box;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .card-container {
-            perspective: 1500px;
-            margin-bottom: 40px;
+            perspective: 2000px;
+            margin: 40px 0;
+            width: 100%;
+            max-width: 500px;
         }
 
         .card {
             background-color: var(--card-bg);
-            backdrop-filter: blur(25px) saturate(150%);
-            -webkit-backdrop-filter: blur(25px) saturate(150%);
-            border-radius: 1.5rem;
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 2rem;
             border: 1px solid var(--border-color);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px var(--shadow-color);
-            max-width: 500px;
+            box-shadow: 0 30px 60px -15px var(--shadow-color);
             width: 100%;
             padding: 3rem;
             text-align: center;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-            will-change: transform; /* Performance optimization */
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+            will-change: transform, box-shadow;
         }
 
         .profile-pic {
@@ -67,30 +76,28 @@
             height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--accent-crimson);
+            border: 4px solid #fff;
             margin: 0 auto 1.5rem;
-            box-shadow: 0 0 30px var(--shadow-color);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .profile-pic:hover {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.1);
         }
 
         .name {
-            font-family: 'Lora', serif; /* Elegant serif font for name */
             font-size: 2.8rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 15px var(--shadow-color);
         }
 
         .title {
             font-size: 1.1rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         .bio {
@@ -98,10 +105,12 @@
             line-height: 1.7;
             margin-bottom: 2.5rem;
             color: var(--text-secondary);
-            font-weight: 300;
+            font-weight: 400;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Content Reveal Animation */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -113,13 +122,12 @@
             transform: translateY(0);
         }
 
-        /* Staggering animation delays */
-        .profile-pic.reveal { transition-delay: 0.2s; }
-        .name.reveal { transition-delay: 0.3s; }
-        .title.reveal { transition-delay: 0.4s; }
-        .bio.reveal { transition-delay: 0.5s; }
-        .social-links-grid.reveal { transition-delay: 0.6s; }
-        .contact-section.reveal { transition-delay: 0.7s; }
+        .profile-pic.reveal { transition-delay: 0.1s; }
+        .name.reveal { transition-delay: 0.2s; }
+        .title.reveal { transition-delay: 0.3s; }
+        .bio.reveal { transition-delay: 0.4s; }
+        .social-links-grid.reveal { transition-delay: 0.5s; }
+        .contact-section.reveal { transition-delay: 0.6s; }
 
         .social-links-grid {
             display: grid;
@@ -133,38 +141,31 @@
             align-items: center;
             justify-content: center;
             padding: 0.9rem;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
+            background-color: rgba(0, 0, 0, 0.04);
+            color: var(--text-secondary);
             border-radius: 0.75rem;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
         }
 
+        /* --- NEW: Hover states with brand colors --- */
         .social-button:hover {
-            transform: translateY(-5px);
             color: #fff;
-            border-color: var(--accent-crimson);
-            box-shadow: 0 0 20px var(--shadow-color);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
         }
-
-        /* Brand-specific hover colors */
-        .social-button.instagram:hover { background-color: #C13584; }
+        .social-button.instagram:hover { background-color: #E1306C; }
         .social-button.youtube:hover { background-color: #FF0000; }
-        .social-button.tiktok:hover { background-color: #00f2ea; color: #000; }
+        .social-button.tiktok:hover { background-color: #000; }
         .social-button.facebook:hover { background-color: #1877F2; }
         .social-button.linkedin:hover { background-color: #0A66C2; }
-
+        /* --- END NEW --- */
 
         .social-button i {
             margin-right: 0.75rem;
             font-size: 1.25rem;
-            transition: transform 0.3s ease;
-        }
-
-        .social-button:hover i {
-            transform: scale(1.2);
         }
 
         .linkedin-button {
@@ -183,41 +184,50 @@
             justify-content: center;
             width: 100%;
             padding: 1rem;
-            background: var(--accent-crimson);
+            background: linear-gradient(to bottom, #0077ed, var(--accent-blue));
             color: #FFFFFF;
             border-radius: 0.75rem;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px var(--shadow-color);
+            box-shadow: 0 8px 15px rgba(0, 113, 227, 0.2);
             border: none;
-            letter-spacing: 0.05em;
+            font-size: 1.05rem;
+            /* NEW: Transition for magnetic effect */
+            transition: transform 0.2s cubic-bezier(0.3, 1, 0.5, 1), box-shadow 0.2s ease;
         }
 
         .email-button:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 30px var(--shadow-color);
-            background: #ff335c; /* Brighter crimson on hover */
+            box-shadow: 0 12px 25px rgba(0, 113, 227, 0.3);
+            background: linear-gradient(to bottom, #007cf5, var(--accent-blue));
         }
 
-        footer {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            padding: 20px;
-            margin-top: 40px;
+        .email-button i {
+            margin-right: 0.8rem;
         }
 
         @media (max-width: 600px) {
-            body { padding: 20px 16px; }
-            .card {
-                padding: 2rem;
-                transform: none !important; /* Disable 3D tilt on mobile */
+            body { 
+                padding: 20px 16px; 
             }
-            .name { font-size: 2.2rem; }
-            .profile-pic { width: 100px; height: 100px; }
-            .social-links-grid { grid-template-columns: 1fr; }
-            .linkedin-button { grid-column: auto; }
+            .card {
+                padding: 2.5rem;
+                transform: none !important;
+                box-shadow: 0 20px 40px -10px var(--shadow-color);
+            }
+            .profile-pic { 
+                width: 100px; 
+                height: 100px;
+            }
+            .name { 
+                font-size: 2.2rem;
+            }
+            .social-links-grid { 
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            .linkedin-button { 
+                grid-column: auto; 
+            }
         }
     </style>
 </head>
@@ -249,28 +259,18 @@
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Abdullah Rashid. All Rights Reserved.</p>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const card = document.querySelector('.card');
             const cardContainer = document.querySelector('.card-container');
             
-            // --- 3D Card Tilt Effect ---
-            // Only apply on non-touch devices
+            // 3D Tilt Effect
             if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) {
                 cardContainer.addEventListener('mousemove', (e) => {
-                    const {
-                        left,
-                        top,
-                        width,
-                        height
-                    } = cardContainer.getBoundingClientRect();
+                    const { left, top, width, height } = cardContainer.getBoundingClientRect();
                     const x = e.clientX - left;
                     const y = e.clientY - top;
-                    const rotateX = (y - height / 2) / 25; // Control sensitivity
+                    const rotateX = (y - height / 2) / 25;
                     const rotateY = (x - width / 2) / -25;
                     card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 });
@@ -280,14 +280,49 @@
                 });
             }
 
-            // --- Content Reveal Animation ---
+            // Reveal Animations
             const revealElements = document.querySelectorAll('.reveal');
-            // Trigger animation once the page is loaded
             setTimeout(() => {
                 revealElements.forEach(el => {
                     el.classList.add('visible');
                 });
             }, 100);
+
+
+            // --- NEW: Magnetic Button Effect ---
+            const emailButton = document.querySelector('.email-button');
+            const magneticStrength = 0.4; // How strong the pull is (0 to 1)
+            const magneticDistance = 100; // Max distance in pixels to start pulling
+
+            emailButton.addEventListener('mousemove', function(e) {
+                const pos = this.getBoundingClientRect();
+                const x = e.clientX - pos.left - pos.width / 2;
+                const y = e.clientY - pos.top - pos.height / 2;
+
+                this.style.transform = `translate(${x * magneticStrength}px, ${y * magneticStrength}px)`;
+            });
+
+            emailButton.addEventListener('mouseleave', function(e) {
+                this.style.transform = 'translate(0px, 0px)';
+            });
+
+
+            /*
+            // --- NEW: Optional Sound on Hover ---
+            // Uncomment this section and the <audio> tag in the HTML to enable.
+            // Ensure you provide a valid path to your sound file.
+            const hoverSound = document.getElementById('hover-sound');
+            const socialButtons = document.querySelectorAll('.social-button');
+
+            socialButtons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    if (hoverSound) {
+                        hoverSound.currentTime = 0; // Rewind to the start
+                        hoverSound.play();
+                    }
+                });
+            });
+            */
         });
     </script>
 </body>
