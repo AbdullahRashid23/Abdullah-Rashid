@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdullah Rashid | Content Creator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            /* Lighter Grayscale Palette with a touch of modern feel */
-            --bg-light: #F0F2F5; /* A very light, almost white background */
-            --bg-gradient-start: #E0E3E8; /* Slightly darker light grey for gradient end */
-            --card-bg: rgba(255, 255, 255, 0.4); /* Lighter, more transparent glass card */
-            --border-color: rgba(200, 200, 200, 0.5); /* Soft light grey border */
-            --text-primary: #333333; /* Dark text for contrast on light background */
-            --text-secondary: #7F7F7D; /* Medium grey for secondary text */
-            --accent-light-grey: #D0DED8; /* Lightest grey from your palette for accents */
-            --button-hover-bg: #C3C3C3; /* A soft grey for button hover */
-            --email-button-bg: #5B5F62; /* Darker grey for email button */
+            /* Deep Ember & Crimson Color Scheme */
+            --bg-dark: #121212; /* Deep ember, almost black */
+            --bg-gradient-start: #1a0808; /* Hint of crimson in the dark */
+            --card-bg: rgba(26, 26, 26, 0.6); /* Translucent dark card */
+            --border-color: rgba(255, 69, 0, 0.2); /* Crimson-tinted border */
+            --text-primary: #F0F2F5; /* Soft, off-white text */
+            --text-secondary: #a0a0a0; /* Muted grey for secondary text */
+            --accent-crimson: #DC143C; /* Vibrant Crimson */
+            --shadow-color: rgba(220, 20, 60, 0.3); /* Crimson glow for shadows */
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
+        /* Smooth scroll and base styling */
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-gradient-start) 100%);
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-gradient-start) 100%);
             color: var(--text-primary);
             display: flex;
             flex-direction: column;
@@ -37,34 +37,29 @@
             min-height: 100vh;
             padding: 40px 24px;
             box-sizing: border-box;
-            transition: background-image 0.3s ease-out; /* Smooth transition for spotlight */
+            overflow-x: hidden;
         }
 
         .card-container {
-            perspective: 1000px; /* For 3D tilt effect */
+            perspective: 1500px;
             margin-bottom: 40px;
         }
 
         .card {
             background-color: var(--card-bg);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            backdrop-filter: blur(25px) saturate(150%);
+            -webkit-backdrop-filter: blur(25px) saturate(150%);
             border-radius: 1.5rem;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1), 0 0 0 1px var(--border-color); /* Subtle border for glass effect */
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px var(--shadow-color);
             max-width: 500px;
             width: 100%;
             padding: 3rem;
             text-align: center;
             position: relative;
-            animation: float 7s ease-in-out infinite;
-            transform-style: preserve-3d; /* For 3D tilt */
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .card:hover {
-            animation-play-state: paused;
-            transform: translateY(-15px) rotateX(5deg) rotateY(-5deg) scale(1.02); /* More engaging hover */
-            box-shadow: 0 25px 70px rgba(0,0,0,0.15), 0 0 0 1px rgba(200,200,200,0.8);
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            will-change: transform; /* Performance optimization */
         }
 
         .profile-pic {
@@ -72,23 +67,23 @@
             height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--accent-light-grey);
+            border: 4px solid var(--accent-crimson);
             margin: 0 auto 1.5rem;
-            box-shadow: 0 0 20px rgba(0,0,0,0.15);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing */
+            box-shadow: 0 0 30px var(--shadow-color);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .profile-pic:hover {
-            transform: scale(1.15) rotate(5deg);
-            box-shadow: 0 0 30px rgba(0,0,0,0.25);
+            transform: scale(1.1) rotate(5deg);
         }
 
         .name {
-            font-size: 2.5rem;
+            font-family: 'Lora', serif; /* Elegant serif font for name */
+            font-size: 2.8rem;
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            text-shadow: 0 0 15px var(--shadow-color);
         }
 
         .title {
@@ -106,6 +101,26 @@
             font-weight: 300;
         }
 
+        /* Content Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggering animation delays */
+        .profile-pic.reveal { transition-delay: 0.2s; }
+        .name.reveal { transition-delay: 0.3s; }
+        .title.reveal { transition-delay: 0.4s; }
+        .bio.reveal { transition-delay: 0.5s; }
+        .social-links-grid.reveal { transition-delay: 0.6s; }
+        .contact-section.reveal { transition-delay: 0.7s; }
+
         .social-links-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -118,34 +133,40 @@
             align-items: center;
             justify-content: center;
             padding: 0.9rem;
-            background-color: rgba(255, 255, 255, 0.6); /* Lighter button background */
+            background-color: rgba(255, 255, 255, 0.05);
             color: var(--text-primary);
             border-radius: 0.75rem;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-button:hover {
-            background-color: var(--button-hover-bg);
-            color: #FFFFFF; /* White text on hover for contrast */
-            transform: translateY(-5px) scale(1.02);
-            border-color: rgba(200, 200, 200, 0.9);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            color: #fff;
+            border-color: var(--accent-crimson);
+            box-shadow: 0 0 20px var(--shadow-color);
         }
+
+        /* Brand-specific hover colors */
+        .social-button.instagram:hover { background-color: #C13584; }
+        .social-button.youtube:hover { background-color: #FF0000; }
+        .social-button.tiktok:hover { background-color: #00f2ea; color: #000; }
+        .social-button.facebook:hover { background-color: #1877F2; }
+        .social-button.linkedin:hover { background-color: #0A66C2; }
+
 
         .social-button i {
             margin-right: 0.75rem;
             font-size: 1.25rem;
-            color: var(--email-button-bg); /* Darker icon color for subtle contrast */
-            transition: color 0.3s ease;
+            transition: transform 0.3s ease;
         }
+
         .social-button:hover i {
-            color: #FFFFFF;
+            transform: scale(1.2);
         }
-        
+
         .linkedin-button {
             grid-column: 1 / -1;
         }
@@ -162,45 +183,21 @@
             justify-content: center;
             width: 100%;
             padding: 1rem;
-            background: var(--email-button-bg); /* Use a darker grey */
+            background: var(--accent-crimson);
             color: #FFFFFF;
             border-radius: 0.75rem;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px var(--shadow-color);
             border: none;
             letter-spacing: 0.05em;
-            overflow: hidden; /* For background animation */
-            position: relative;
-            z-index: 1;
-        }
-
-        .email-button:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: -1;
-        }
-
-        .email-button:hover:before {
-            left: 100%;
         }
 
         .email-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-        }
-
-        .email-button i {
-            margin-right: 0.8rem;
-            font-size: 1.2rem;
-            color: #FFFFFF;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 30px var(--shadow-color);
+            background: #ff335c; /* Brighter crimson on hover */
         }
 
         footer {
@@ -215,13 +212,11 @@
             body { padding: 20px 16px; }
             .card {
                 padding: 2rem;
-                animation: none; /* Disable float animation on mobile for performance */
-                transform: none !important; /* Ensure no tilt on mobile */
+                transform: none !important; /* Disable 3D tilt on mobile */
             }
-            .card:hover { transform: none; box-shadow: 0 15px 50px rgba(0,0,0,0.1), 0 0 0 1px var(--border-color); }
-            .name { font-size: 2rem; }
+            .name { font-size: 2.2rem; }
             .profile-pic { width: 100px; height: 100px; }
-            .social-links-grid { grid-template-columns: 1fr; } /* Stack buttons on small screens */
+            .social-links-grid { grid-template-columns: 1fr; }
             .linkedin-button { grid-column: auto; }
         }
     </style>
@@ -229,24 +224,24 @@
 <body>
     <div class="card-container">
         <div class="card">
-            <img src="quality_restoration_20250908232017733.jpg" alt="Profile Picture" class="profile-pic">
+            <img src="quality_restoration_20250908232017733.jpg" alt="Profile Picture" class="profile-pic reveal">
 
-            <h1 class="name">Abdullah Rashid</h1>
-            <p class="title">Content Creator | Aspiring Data Scientist | Video Editor</p>
+            <h1 class="name reveal">Abdullah Rashid</h1>
+            <p class="title reveal">Content Creator | Aspiring Data Scientist | Video Editor</p>
 
-            <p class="bio">
+            <p class="bio reveal">
                 I'm a content creator dedicated to highlighting the inspiring journeys of successful Pakistani entrepreneurs. My passion has led to collaborations with industry leaders like Faisal Aftab, a prominent Shark Tank Pakistan investor. I'm currently pursuing a Data Science degree, aiming to merge AI and economics to simplify financial decisions.
             </p>
 
-            <div class="social-links-grid">
-                <a href="https://www.instagram.com/abdullah.rashid.1" target="_blank" class="social-button"><i class="fab fa-instagram"></i> <span>Instagram</span></a>
-                <a href="https://www.youtube.com/@abdullah_rashid.1" target="_blank" class="social-button"><i class="fab fa-youtube"></i> <span>YouTube</span></a>
-                <a href="https://www.tiktok.com/@abdullah.rashid.1" target="_blank" class="social-button"><i class="fab fa-tiktok"></i> <span>TikTok</span></a>
-                <a href="https://www.facebook.com/abdullah.rashid.1" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i> <span>Facebook</span></a>
-                <a href="https://www.linkedin.com/in/abdullah-rashid-a51249332" target="_blank" class="social-button linkedin-button"><i class="fab fa-linkedin-in"></i> <span>LinkedIn</span></a>
+            <div class="social-links-grid reveal">
+                <a href="https://www.instagram.com/abdullah.rashid.1" target="_blank" class="social-button instagram"><i class="fab fa-instagram"></i> <span>Instagram</span></a>
+                <a href="https://www.youtube.com/@abdullah_rashid.1" target="_blank" class="social-button youtube"><i class="fab fa-youtube"></i> <span>YouTube</span></a>
+                <a href="https://www.tiktok.com/@abdullah.rashid.1" target="_blank" class="social-button tiktok"><i class="fab fa-tiktok"></i> <span>TikTok</span></a>
+                <a href="https://www.facebook.com/abdullah.rashid.1" target="_blank" class="social-button facebook"><i class="fab fa-facebook-f"></i> <span>Facebook</span></a>
+                <a href="https://www.linkedin.com/in/abdullah-rashid-a51249332" target="_blank" class="social-button linkedin-button linkedin"><i class="fab fa-linkedin-in"></i> <span>LinkedIn</span></a>
             </div>
 
-            <div class="contact-section">
+            <div class="contact-section reveal">
                 <a href="mailto:abdullah12071207@gmail.com" class="email-button">
                     <i class="fas fa-envelope"></i> <span>Email Me</span>
                 </a>
@@ -259,15 +254,40 @@
     </footer>
 
     <script>
-        document.addEventListener('mousemove', (e) => {
-            const body = document.body;
-            const x = e.clientX;
-            const y = e.clientY;
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.card');
+            const cardContainer = document.querySelector('.card-container');
+            
+            // --- 3D Card Tilt Effect ---
+            // Only apply on non-touch devices
+            if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) {
+                cardContainer.addEventListener('mousemove', (e) => {
+                    const {
+                        left,
+                        top,
+                        width,
+                        height
+                    } = cardContainer.getBoundingClientRect();
+                    const x = e.clientX - left;
+                    const y = e.clientY - top;
+                    const rotateX = (y - height / 2) / 25; // Control sensitivity
+                    const rotateY = (x - width / 2) / -25;
+                    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
 
-            body.style.backgroundImage = `
-                radial-gradient(circle at ${x}px ${y}px, ${getComputedStyle(document.documentElement).getPropertyValue('--accent-light-grey')}30 0px, transparent 15vw),
-                linear-gradient(135deg, var(--bg-light) 0%, var(--bg-gradient-start) 100%)
-            `;
+                cardContainer.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                });
+            }
+
+            // --- Content Reveal Animation ---
+            const revealElements = document.querySelectorAll('.reveal');
+            // Trigger animation once the page is loaded
+            setTimeout(() => {
+                revealElements.forEach(el => {
+                    el.classList.add('visible');
+                });
+            }, 100);
         });
     </script>
 </body>
