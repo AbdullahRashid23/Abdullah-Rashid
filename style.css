@@ -587,16 +587,46 @@ section:not(#hero) {
 
 /* --- MOBILE SPECIFIC --- */
 @media (max-width: 600px) {
+
+  /* Background text: taller stretch, pushed higher */
+  .ref-bg-text {
+    top: 42%;
+    transform: translate(-50%, -50%) scale(1, 4.2);
+    font-size: min(28vw, 13rem);
+  }
+
+  /* Subject image: moved upward, smooth bottom fade */
   .ref-image-wrapper {
-    height: 84vh;
-    /* slightly taller to allow it to reach lower */
-    margin-bottom: -5vh;
-    /* pull the wrapper down into the gap */
+    height: 90vh;
+    margin-bottom: -8vh;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
 
   .ref-hero-img {
-    transform: translateY(0vh) scale(1.35);
-    /* push the image itself slightly lower and scale it up to make subject bigger */
+    transform: translateY(-6vh) scale(1.3);
+    object-position: center 15%;
+  }
+}
+
+/* --- HIDE CURSOR ON TOUCH/MOBILE --- */
+@media (hover: none) and (pointer: coarse) {
+
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none !important;
+  }
+
+  body {
+    cursor: auto;
+  }
+
+  a,
+  button,
+  .hover-trigger,
+  .social-btn,
+  .email-button {
+    cursor: pointer;
   }
 }
 
