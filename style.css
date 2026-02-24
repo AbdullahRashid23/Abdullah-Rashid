@@ -1,353 +1,776 @@
-<!DOCTYPE html>
-<html lang="en">
+/* --- 1. CORE VARIABLES & FONTS --- */
+@font-face {
+  font-family: 'Robot Crush';
+  src: url('/Robot Crush.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdullah Rashid | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
-</head>
+@font-face {
+  font-family: 'Robot Crush';
+  src: url('/Robot Crush Italic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
 
-<body>
-    <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-    <div class="custom-cursor-follower"></div>
+:root {
+  /* Premium Orange Palette */
+  --accent: #FF5E00;
+  --accent-glow: rgba(255, 94, 0, 0.6);
+  --grad-1: rgba(255, 60, 0, 0.4);
+  --grad-2: rgba(200, 30, 0, 0.4);
+  --grad-center: rgba(255, 94, 0, 0.1);
 
-    <!-- Hover Media -->
-    <div class="hover-media">
-        <img src="/my_image.png" alt="Hover Media">
-    </div>
+  /* Base Colors */
+  --bg: #0C0500;
+  --surface: rgba(30, 10, 0, 0.6);
+  --surface-hover: rgba(50, 20, 0, 0.8);
+  --border: rgba(255, 80, 0, 0.15);
+  --text-main: #ffffff;
+  --text-sub: #D3A795;
+  /* Faded warm orange/white */
+  --nav-height: 80px;
+  --font-stack: 'Inter', system-ui, -apple-system, sans-serif;
+  --shadow-color: rgba(255, 94, 0, 0.1);
+}
 
-    <!-- WebGL Particle Canvas -->
-    <canvas id="particle-canvas"></canvas>
+@keyframes subtleGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
 
-    <div class="aurora-bg"></div>
+  50% {
+    background-position: 100% 50%;
+  }
 
-    <nav class="global-nav">
-        <div class="nav-content">
-            <div class="nav-left">
-                <a href="#hero" class="nav-item magnetic-btn" data-strength="20">ABDULLAH</a>
-            </div>
-            <div class="nav-center">
-                <a href="#about" class="nav-item">MENU</a>
-            </div>
-            <div class="nav-right">
-                <a href="#contact" class="nav-item magnetic-btn" data-strength="20">CONTACT</a>
-            </div>
-        </div>
-    </nav>
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
-    <!-- Section 1: Hero -->
-    <section id="hero" class="reference-hero">
-        <div class="ref-bg-text" data-text="ABDULLAH">
-            ABDULLAH
-        </div>
-        <div class="ref-image-wrapper">
-            <img src="/my_image.png" alt="Abdullah Rashid" class="ref-hero-img">
-        </div>
-    </section>
+/* --- 2. GLOBAL RESET --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <section id="about">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">About Me</span>
-                <h2 class="section-title">Summary</h2>
-            </div>
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+  overflow-x: hidden;
+  max-width: 100vw;
+}
 
-            <div class="about-text reveal">
-                <p class="decode-text">
-                    I am a content creator with over <span class="highlight">10,000+ followers</span> across multiple
-                    platforms, passionate about uncovering and sharing the journeys of successful Pakistani
-                    entrepreneurs. My goal is to highlight hidden business personalities and inspire others through
-                    their stories. This focus has led me to collaborate with industry leaders like <span
-                        class="highlight">Faisal Aftab</span>, a Shark Tank Pakistan investor and accomplished
-                    entrepreneur.
-                </p>
-                <p class="decode-text">
-                    Beyond entrepreneurship, I create informative videos on a wide range of topics, including science
-                    facts, history, and current affairs. In addition to content creation, I am pursuing a degree in Data
-                    Science at Punjab University College of Information Technology (<span
-                        class="highlight">PUCIT</span>).
-                </p>
-                <p class="decode-text">
-                    As an aspiring data scientist, I aim to merge <span class="highlight">AI and economics</span> to
-                    simplify financial decision-making and integrate AI with research for meaningful advancements. I am
-                    always open to networking, collaborations, and discussions about AI, economics, and
-                    entrepreneurship. Let's connect and explore opportunities together!
-                </p>
-            </div>
-        </div>
-    </section>
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-stack);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg);
+  cursor: none;
+}
 
-    <section id="experience" style="position: relative; overflow: hidden;">
-        <div class="marquee-container" style="top: 30%;">
-            <div class="marquee-text">AMBASSADOR • EVENT MANAGER • POST PRODUCTION • TEACHING ASSISTANT • </div>
-            <div class="marquee-text">AMBASSADOR • EVENT MANAGER • POST PRODUCTION • TEACHING ASSISTANT • </div>
-        </div>
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="section-header reveal">
-                <span class="section-tag">Trajectory</span>
-                <h2 class="section-title">Professional Experience</h2>
-            </div>
+body.preloading {
+  overflow: hidden;
+}
 
-            <div class="horizontal-scroll-container">
-                <div class="exp-list">
+a,
+button,
+.hover-trigger,
+.social-btn,
+.email-button {
+  cursor: none;
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Oct 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Campus Ambassador</h3>
-                            <span class="exp-org">The TalentBeacon</span>
-                            <p class="exp-desc">
-                                Representing the organization to foster student engagement, organize events, and bridge
-                                the gap between emerging talent and industry opportunities.
-                            </p>
-                        </div>
-                    </div>
+/* --- 3. DYNAMIC AURORA BACKGROUND --- */
+.aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 10% 20%, var(--grad-1), transparent 40%),
+    radial-gradient(circle at 90% 80%, var(--grad-2), transparent 40%),
+    radial-gradient(circle at 50% 50%, var(--grad-center), transparent 60%);
+  filter: blur(60px);
+  animation: breathe 8s infinite alternate ease-in-out;
+  opacity: 1;
+  transition: background 1s ease;
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Jan 2026 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Finance Head</h3>
-                            <span class="exp-org">FCIT Robotics Society</span>
-                            <p class="exp-desc">
-                                Managing the society's finances.
-                            </p>
-                        </div>
-                    </div>
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Dec 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Media Head</h3>
-                            <span class="exp-org">Pioneer Debating Society</span>
-                            <p class="exp-desc">
-                                Leading the media and promotional campaigns.
-                            </p>
-                        </div>
-                    </div>
+  100% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Nov 2024 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Event Organizer & Media Team Member</h3>
-                            <span class="exp-org">Event Management Society (EMS) PUCIT</span>
-                            <p class="exp-desc">
-                                Organizing and executing major campus events (Nov '25 - Present), ensuring smooth
-                                logistics. Previously served in the Media Team (Nov '24 - Nov '25). Lahore, Punjab,
-                                Pakistan.
-                            </p>
-                        </div>
-                    </div>
+/* --- 4. NAVIGATION --- */
+.global-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.5rem 4rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Oct 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Post Production Head</h3>
-                            <span class="exp-org">FCIT Information and Media Society</span>
-                            <p class="exp-desc">
-                                Leading post-production workflows. Managing video editing teams and ensuring
-                                high-quality media deliverables.
-                            </p>
-                        </div>
-                    </div>
+.global-nav.scrolled {
+  background: rgba(12, 5, 0, 0.9) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding: 1.5rem 4rem;
+  mix-blend-mode: normal !important;
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Sep 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Teaching Assistant (AICT & Programming Fundamentals)</h3>
-                            <span class="exp-org">PUCIT FCIT</span>
-                            <p class="exp-desc">
-                                Assisting in two core courses: Programming Fundamentals and Applications of ICT (AICT).
-                                Mentoring students, conducting lab sessions, and grading.
-                            </p>
-                        </div>
-                    </div>
+.nav-content {
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: auto;
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Mar 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Content Creator</h3>
-                            <span class="exp-org">PUCon '24</span>
-                            <p class="exp-desc">
-                                Lahore, Punjab, Pakistan. Content creation for event highlights and marketing.
-                            </p>
-                        </div>
-                    </div>
+.nav-item {
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Oct 2025 - Dec 2025</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">PsiFi XVII Campus Ambassador</h3>
-                            <span class="exp-org">SPADES</span>
-                            <p class="exp-desc">
-                                Represented and promoted the mega-event across campus.
-                            </p>
-                        </div>
-                    </div>
+.nav-item:hover {
+  opacity: 0.6;
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Apr 2025 - Jun 2025</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Campus Ambassador</h3>
-                            <span class="exp-org">TechnoVerse CUI Lahore</span>
-                            <p class="exp-desc">
-                                Acting as the primary liaison between PUCIT and TechnoVerse.
-                            </p>
-                        </div>
-                    </div>
+/* Unique center alignment for MENU */
+.nav-center .nav-item {
+  position: relative;
+  display: inline-block;
+  padding-top: 10px;
+}
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Feb 2025 - Mar 2025</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Coordinator</h3>
-                            <span class="exp-org">FCIT NC SPORTS</span>
-                            <p class="exp-desc">
-                                Coordinated sports events, scheduling, and team management. Lahore, Punjab, Pakistan.
-                            </p>
-                        </div>
-                    </div>
+.nav-center .nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
 
-                </div>
-            </div>
-        </div>
-    </section>
+.nav-center .nav-item:hover::before {
+  width: 100%;
+}
 
-    <!-- Education Section -->
-    <section id="education" style="position: relative; overflow: hidden;">
-        <div class="marquee-container">
-            <div class="marquee-text">DATA SCIENCE • COMPUTER SCIENCE • PUNJAB UNIVERSITY • </div>
-            <div class="marquee-text">DATA SCIENCE • COMPUTER SCIENCE • PUNJAB UNIVERSITY • </div>
-        </div>
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="section-header reveal">
-                <span class="section-tag">Academic Background</span>
-                <h2 class="section-title">Education</h2>
-            </div>
+/* --- 6. HERO SECTION --- */
+.reference-hero {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* Push image to the bottom */
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #e24e00 0%, #bd3200 40%, #871300 80%, #3a0500 100%);
+}
 
-            <div class="horizontal-scroll-container">
-                <div class="exp-list">
+.ref-bg-text {
+  position: absolute;
+  top: 48%;
+  left: 50%;
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Sep 2024 - Oct 2028</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Bachelor's degree, Data Science</h3>
-                            <span class="exp-org">University of the Punjab</span>
-                            <p class="exp-desc">
-                                Detailed focus on AI, data analytics, and computational economics. Active participant in
-                                various tech societies.
-                            </p>
-                        </div>
-                    </div>
+  /* Stable transform setup */
+  transform-origin: center center;
+  transform: translate(-50%, -50%) scale(1, 3.2);
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Mar 2022 - May 2024</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Intermediate in Computer Science</h3>
-                            <span class="exp-org">Punjab Group Of Colleges Bahria Town Lahore</span>
-                            <p class="exp-desc">
-                                Foundational studies in computer science and mathematics.
-                            </p>
-                        </div>
-                    </div>
+  font-family: 'Bebas Neue', sans-serif;
 
-                </div>
-            </div>
-        </div>
-    </section>
+  /* Smooth fluid scaling across ALL screen dimensions, limits header overlap */
+  font-size: min(24vw, 11.5rem);
+  font-weight: 900;
 
-    <section id="skills" style="position: relative; overflow: hidden;">
-        <div class="marquee-container">
-            <div class="marquee-text">PYTHON • DATA SCIENCE • VIDEO PRODUCTION • EVENT MANAGEMENT • STRATEGY • </div>
-            <div class="marquee-text">PYTHON • DATA SCIENCE • VIDEO PRODUCTION • EVENT MANAGEMENT • STRATEGY • </div>
-        </div>
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="section-header reveal">
-                <span class="section-tag">Expertise</span>
-                <h2 class="section-title">Skills & Toolstack</h2>
-            </div>
+  /* Clean tracking */
+  letter-spacing: clamp(0.08em, 0.9vw, 0.22em);
 
-            <div class="skills-grid">
-                <div class="exp-card spotlight skill-card shimmer-border reveal" data-tilt data-tilt-max="8"
-                    data-tilt-speed="400">
-                    <i class="fab fa-python skill-icon"></i>
-                    <h3 class="exp-role">Python & Data Science</h3>
-                    <p class="exp-desc">Pandas, NumPy, Scikit-learn, and building ML models to merge AI with economic
-                        data.</p>
-                </div>
-                <div class="exp-card spotlight skill-card shimmer-border reveal" data-tilt data-tilt-max="8"
-                    data-tilt-speed="400">
-                    <i class="fas fa-video skill-icon"></i>
-                    <h3 class="exp-role">Video Production</h3>
-                    <p class="exp-desc">Advanced post-production, editing, and content direction for 10k+ social media
-                        followers.</p>
-                </div>
-                <div class="exp-card spotlight skill-card shimmer-border reveal" data-tilt data-tilt-max="8"
-                    data-tilt-speed="400">
-                    <i class="fas fa-users skill-icon"></i>
-                    <h3 class="exp-role">Team Leadership</h3>
-                    <p class="exp-desc">Event organization, teaching assistance, and cross-functional team coordination
-                        at FCIT.</p>
-                </div>
-                <div class="exp-card spotlight skill-card shimmer-border reveal" data-tilt data-tilt-max="8"
-                    data-tilt-speed="400">
-                    <i class="fas fa-chart-line skill-icon"></i>
-                    <h3 class="exp-role">Strategic Analysis</h3>
-                    <p class="exp-desc">Translating complex financial and business data into actionable insights for the
-                        modern world.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  color: #ffffff;
+  white-space: nowrap;
 
-    <section id="contact" style="border: none;">
-        <div class="container">
-            <div class="reveal">
-                <span class="section-tag">Contact</span>
-                <h2 class="section-title">Let's Connect</h2>
-                <p style="color: var(--text-sub); margin-top: 1rem; max-width: 500px; margin-bottom: 2rem;">
-                    I am always open to networking, collaborations, and discussions about AI, Economics, and
-                    Entrepreneurship.
-                </p>
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-                <a href="mailto:abdullah12071207@gmail.com" class="email-button">
-                    <i class="fas fa-envelope"></i> <span>Email Me</span>
-                </a>
+  width: 100%;
+  margin: 0;
+  padding: 0;
 
-                <div class="social-dock">
-                    <a href="https://www.linkedin.com/in/abdullah-rashid-a51249332" target="_blank"
-                        class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.instagram.com/abdullah.rashid.1" target="_blank" class="social-btn"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/@abdullah_rashid.1" target="_blank" class="social-btn"><i
-                            class="fab fa-youtube"></i></a>
-                    <a href="https://www.tiktok.com/@abdullah.rashid.1" target="_blank" class="social-btn"><i
-                            class="fab fa-tiktok"></i></a>
-                    <a href="https://wa.me/923318666628" target="_blank" class="social-btn"><i
-                            class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
+  text-align: center;
 
-            <footer style="margin-top: 5rem; text-align: center; color: var(--text-sub); font-size: 0.9rem;"
-                class="reveal">
-                &copy; 2026 Abdullah Rashid. Lahore, Pakistan.
-            </footer>
-        </div>
-    </section>
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
+}
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-    <script src="https://unpkg.com/split-type"></script>
-    <script type="module" src="/main.js"></script>
-</body>
+.ref-image-wrapper {
+  position: relative;
+  z-index: 10;
+  height: 90vh;
+  /* Make subject HUGE again */
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+  will-change: transform;
+}
 
-</html>
+.ref-hero-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  /* Prevents overflow/cropping on narrow, tall devices */
+  object-position: bottom center;
+  /* Keeps subject anchored to bottom */
+  pointer-events: auto;
+  will-change: transform;
+}
+
+/* --- 7. SPOTLIGHT & ANIMATED CARDS --- */
+.horizontal-scroll-container {
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.horizontal-scroll-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+  align-items: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.exp-card {
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+  --spotlight-color: rgba(255, 120, 0, 0.15);
+  transition: border-color 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.exp-list .exp-card {
+  width: 100%;
+  max-width: 800px;
+  flex: 0 0 auto;
+}
+
+.exp-card:hover {
+  border-color: rgba(255, 100, 0, 0.4);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(255, 94, 0, 0.1);
+}
+
+.exp-card>* {
+  transform: translateZ(30px);
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.skill-icon {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.exp-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 40%);
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.exp-card:hover::before {
+  opacity: 1;
+}
+
+.exp-card>* {
+  position: relative;
+  z-index: 1;
+}
+
+.exp-date {
+  color: var(--text-sub);
+  font-family: monospace;
+  font-size: 0.95rem;
+  padding-top: 5px;
+}
+
+.exp-role {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+}
+
+.exp-org {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.exp-desc {
+  font-size: 1rem;
+  color: var(--text-sub);
+  line-height: 1.6;
+}
+
+/* --- 8. ABOUT & CONTACT --- */
+.section-header {
+  margin-bottom: 3rem;
+}
+
+#about {
+  background: linear-gradient(180deg, rgba(12, 5, 0, 0) 0%, rgba(12, 5, 0, 0.8) 20%, var(--bg) 100%);
+  margin-top: -5px;
+  /* Pull up slightly to overlap any pixel gap from hero */
+}
+
+.section-tag {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 94, 0, 0.1);
+  border: 1px solid rgba(255, 94, 0, 0.2);
+  border-radius: 50px;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-main);
+  margin-top: 0.5rem;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.15rem;
+  color: var(--text-sub);
+  line-height: 1.8;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+.highlight {
+  color: var(--text-main);
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.section-visible .highlight::after,
+.highlight:hover::after {
+  width: 100%;
+}
+
+.email-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, var(--accent), #cc4a00);
+  color: #FFFFFF;
+  border-radius: 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(255, 94, 0, 0.3);
+  border: none;
+  font-size: 1.1rem;
+  transition: transform 0.2s cubic-bezier(0.3, 1, 0.5, 1), box-shadow 0.2s ease;
+}
+
+.email-button:hover {
+  box-shadow: 0 15px 35px rgba(255, 94, 0, 0.4);
+  background: linear-gradient(135deg, #ff7b30, var(--accent));
+}
+
+.email-button i {
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.social-dock {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  justify-content: flex-start;
+}
+
+.social-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--text-sub);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.social-btn:hover {
+  background: var(--text-main);
+  color: var(--bg);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--accent-glow);
+  border-color: var(--text-main);
+}
+
+/* --- 5. LAYOUT UTILITIES --- */
+section:not(#hero) {
+  padding: 8rem 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  section {
+    padding: 5rem 0;
+    /* Reduce massive vertical padding */
+  }
+
+  .container {
+    width: 92%;
+    padding: 0 1rem;
+  }
+
+  .global-nav {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .global-nav.scrolled {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-center {
+    display: none;
+  }
+
+  .ref-image-wrapper {
+    height: 85vh;
+    /* Restore subject's prominence and huge size on mobile */
+  }
+
+  .ref-hero-img {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    /* Allow full width bleeding if necessary */
+    object-fit: contain;
+    /* Contain to show the full subject without weird cropping */
+    object-position: bottom center;
+  }
+
+  .exp-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    /* less padding on cards */
+  }
+
+  .exp-date {
+    margin-bottom: 0.25rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    /* Better readability on small screens */
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* --- MOBILE SPECIFIC --- */
+@media (max-width: 600px) {
+  .ref-image-wrapper {
+    height: 84vh;
+    /* slightly taller to allow it to reach lower */
+    margin-bottom: -5vh;
+    /* pull the wrapper down into the gap */
+  }
+
+  .ref-hero-img {
+    transform: translateY(0vh) scale(1.35);
+    /* push the image itself slightly lower and scale it up to make subject bigger */
+  }
+}
+
+/* --- 9. PREMIUM EFFECTS (NEW) --- */
+
+/* Preloader */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1);
+  will-change: transform;
+}
+
+.counter {
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  letter-spacing: normal;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 94, 0, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor-hover .custom-cursor {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.cursor-hover .custom-cursor-follower {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 94, 0, 0.1);
+  backdrop-filter: blur(2px);
+  border-color: var(--accent);
+}
+
+/* Particle Canvas */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Hover Media */
+.hover-media {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 160px;
+  pointer-events: none;
+  z-index: 900;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8) rotate(-5deg);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.hover-media.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.hover-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Shimmer Border */
+.shimmer-border {
+  position: relative;
+}
+
+.shimmer-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 94, 0, 0.8), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 4s infinite linear;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Marquee */
+.marquee-container {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0.05;
+  pointer-events: none;
+  display: flex;
+}
+
+.marquee-text {
+  display: inline-block;
+  font-size: 15vw;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--text-main);
+  animation: marquee 40s linear infinite;
+  padding-right: 2rem;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+/* Character Splitting (Decode) */
+.decode-text .char {
+  display: inline-block;
+}
