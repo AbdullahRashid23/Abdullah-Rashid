@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="/my_image.png" as="image">
     <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -21,7 +22,8 @@
 
     <!-- Hover Media -->
     <div class="hover-media">
-        <img src="/my_image.png" alt="Hover Media">
+        <img src="/my_image.png" alt="" width="250" height="160" loading="eager"
+            style="display:block;width:100%;height:100%;object-fit:cover;">
     </div>
 
     <!-- WebGL Particle Canvas -->
