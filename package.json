@@ -11,5 +11,8 @@
   "devDependencies": {
     "stylelint-config-standard": "^40.0.0",
     "vite": "^5.2.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.0.0"
   }
 }
