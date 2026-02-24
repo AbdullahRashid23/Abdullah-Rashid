@@ -39,7 +39,6 @@ window.onload = () => {
     hoverTriggers.forEach(trigger => {
         trigger.addEventListener('mouseenter', (e) => {
             hoverMedia.classList.add('show');
-            hoverImg.src = "/my_image.png";
         });
         trigger.addEventListener('mousemove', (e) => {
             gsap.to(hoverMedia, { x: e.clientX, y: e.clientY, duration: 0.5, ease: "power3.out" });
