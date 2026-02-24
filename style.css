@@ -3,7 +3,7 @@
   font-family: 'Robot Crush';
   src: url('/Robot Crush.ttf') format('truetype');
   font-weight: 900;
-  font-style: normal;
+  font-style: normal !important;
 }
 
 @font-face {
@@ -135,7 +135,6 @@ button,
 .global-nav.scrolled {
   background: rgba(12, 5, 0, 0.9) !important;
   backdrop-filter: blur(25px) !important;
-  -webkit-backdrop-filter: blur(25px) !important;
   border-bottom: 1px solid var(--border) !important;
   padding: 1.5rem 4rem;
   mix-blend-mode: normal !important;
@@ -221,7 +220,7 @@ button,
   /* Clean tracking */
   letter-spacing: clamp(0.08em, 0.9vw, 0.22em);
 
-  color: #ffffff;
+  color: #ffffff !important;
   white-space: nowrap;
 
   display: flex;
@@ -622,7 +621,7 @@ section:not(#hero) {
   color: var(--accent);
   font-variant-numeric: tabular-nums;
   opacity: 0;
-  letter-spacing: normal;
+  letter-spacing: normal !important;
 }
 
 /* Custom Cursor */
