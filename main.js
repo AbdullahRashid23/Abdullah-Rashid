@@ -167,52 +167,53 @@ window.onload = () => {
     const refBgText = document.querySelector('.ref-bg-text');
 
     // Wait slightly to let the initial load animations finish before registering the scroll triggers.
-    // This prevents the scroll scrub from snapping to the `opacity: 0` start state of the load animation when scrolling back up.
     setTimeout(() => {
-        // Hero Image Scroll Animation: scales down, blurs, and fades slightly, while moving down to prevent the bottom edge from lifting
-        gsap.to(refImageWrapper, {
-            y: () => window.innerHeight * 0.3,
-            scale: 0.85,
-            opacity: 0.5,
-            filter: "blur(10px)",
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: 1, // smooth scrubbing
-                invalidateOnRefresh: true
-            }
-        });
+        // Hero Image Scroll Animation: scales down, blurs, and fades slightly
+        if (refImageWrapper) {
+            gsap.fromTo(refImageWrapper, {
+                y: 0,
+                scale: 1,
+                opacity: 1,
+                filter: "blur(0px)"
+            }, {
+                y: () => window.innerHeight * 0.3,
+                scale: 0.85,
+                opacity: 0.5,
+                filter: "blur(10px)",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1,
+                    invalidateOnRefresh: true
+                }
+            });
+        }
 
-        // Hero Text Scroll Animation: moves opposite direction and fades out
-        // Note: Removed scale animation so it doesn't overwrite the CSS scale(1, 2.7) vertical stretch!
-        gsap.to(refBgText, {
-            y: () => window.innerHeight * 0.4,
-            opacity: 0,
-            filter: "blur(15px)",
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: 1, // smooth scrubbing
-                invalidateOnRefresh: false // Prevent harsh jumping recalculations on simple resize
-            }
-        });
+        // Hero Text Scroll Animation: moves and fades out
+        if (refBgText) {
+            gsap.fromTo(refBgText, {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)"
+            }, {
+                y: () => window.innerHeight * 0.4,
+                opacity: 0,
+                filter: "blur(15px)",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1,
+                    invalidateOnRefresh: true
+                }
+            });
+        }
     }, 1500);
 
-    // Navbar Scroll Blur
-    ScrollTrigger.create({
-        start: "top -50",
-        onUpdate: (self) => {
-            const nav = document.querySelector('.global-nav');
-            if (nav) {
-                if (self.direction === 1) nav.classList.add('scrolled'); // down
-                else if (window.scrollY <= 50) nav.classList.remove('scrolled');
-            }
-        }
-    });
+    // (Hamburger nav replaces old navbar scroll behavior)
 
     // 8. Horizontal Scroll Section - Remnant Cleanup
     const horizontalContainer = document.querySelector('.horizontal-scroll-container');
@@ -289,6 +290,75 @@ window.onload = () => {
     // Removed the opacity:0 scroll trigger on .exp-card because native CSS horizontal scroll 
     // means they enter from the right, not the bottom, making vertical scroll triggers unreliable.
 
+    // --- EXPERIENCE, PROJECTS & EDUCATION: Timeline Card Scroll Reveal ---
+    ['#experience', '#projects', '#education'].forEach(sectionId => {
+        const section = document.querySelector(sectionId);
+        if (!section) return;
+        const cards = section.querySelectorAll('.timeline-card');
+        
+        cards.forEach((card, i) => {
+            const rotateDir = i % 2 === 0 ? -3 : 3;
+            
+            gsap.fromTo(card, 
+                { 
+                    opacity: 0, 
+                    y: 80, 
+                    scale: 0.88,
+                    rotateY: rotateDir,
+                    filter: "blur(8px)"
+                },
+                {
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1,
+                    rotateY: 0,
+                    filter: "blur(0px)",
+                    duration: 0.9,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 92%",
+                        end: "top 60%",
+                        toggleActions: "play none none reverse"
+                    },
+                    onStart: () => card.classList.add('scroll-revealed'),
+                    delay: 0.1 * (i % 4) 
+                }
+            );
+        });
+
+        // --- Glowing Timeline Line Animation ---
+        const timelineGlow = section.querySelector('.timeline-glow');
+        const timelineWrapper = section.querySelector('.timeline-wrapper');
+        if (timelineGlow && timelineWrapper) {
+            gsap.to(timelineGlow, {
+                height: "100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: timelineWrapper,
+                    start: "top 80%",
+                    end: "bottom 40%",
+                    scrub: 1
+                }
+            });
+        }
+    });
+
+    // --- View All Button Reveal ---
+    gsap.utils.toArray('.view-all-wrapper').forEach(wrapper => {
+        gsap.fromTo(wrapper,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1, y: 0, duration: 0.8, ease: "power2.out",
+                scrollTrigger: {
+                    trigger: wrapper,
+                    start: "top 90%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+    });
+
     // Spotlight Hover
     document.querySelectorAll('.spotlight').forEach(card => {
         card.addEventListener('mousemove', e => {
@@ -323,5 +393,29 @@ window.onload = () => {
 
     window.scrollToSection = function (id) {
         gsap.to(window, { duration: 1, scrollTo: { y: id, offsetY: 80 }, ease: "power3.inOut" });
+    }
+
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const overlayMenu = document.getElementById('overlayMenu');
+
+    if (hamburger && overlayMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            overlayMenu.classList.toggle('active');
+            document.body.style.overflow = overlayMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu and scroll to section on link click
+        overlayMenu.querySelectorAll('.overlay-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = link.getAttribute('href');
+                hamburger.classList.remove('active');
+                overlayMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                gsap.to(window, { duration: 1, scrollTo: { y: target, offsetY: 80 }, ease: "power3.inOut" });
+            });
+        });
     }
 };
