@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdullah Rashid | Portfolio</title>
+    <link rel="icon" type="image/png" href="/Web.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -33,17 +34,61 @@
 
     <nav class="global-nav">
         <div class="nav-content">
-            <div class="nav-left">
-                <a href="#hero" class="nav-item magnetic-btn" data-strength="20">ABDULLAH</a>
-            </div>
-            <div class="nav-center">
-                <a href="#about" class="nav-item">MENU</a>
-            </div>
-            <div class="nav-right">
-                <a href="#contact" class="nav-item magnetic-btn" data-strength="20">CONTACT</a>
-            </div>
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Fullscreen Overlay Menu -->
+    <div class="overlay-menu" id="overlayMenu">
+        <div class="overlay-menu-header">
+            <span class="overlay-label">NAVIGATION</span>
+            <span class="overlay-line"></span>
+        </div>
+        <div class="overlay-menu-inner">
+            <a href="#hero" class="overlay-link" data-index="01">
+                <span class="overlay-index">01</span>
+                <span class="overlay-text">Home</span>
+                <span class="overlay-arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="#about" class="overlay-link" data-index="02">
+                <span class="overlay-index">02</span>
+                <span class="overlay-text">About</span>
+                <span class="overlay-arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="#experience" class="overlay-link" data-index="03">
+                <span class="overlay-index">03</span>
+                <span class="overlay-text">Experience</span>
+                <span class="overlay-arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="#projects" class="overlay-link" data-index="04">
+                <span class="overlay-index">04</span>
+                <span class="overlay-text">Projects</span>
+                <span class="overlay-arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="#education" class="overlay-link" data-index="05">
+                <span class="overlay-index">05</span>
+                <span class="overlay-text">Education</span>
+                <span class="overlay-arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="#skills" class="overlay-link" data-index="06">
+                <span class="overlay-index">06</span>
+                <span class="overlay-text">Skills</span>
+                <span class="overlay-arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="#contact" class="overlay-link" data-index="07">
+                <span class="overlay-index">07</span>
+                <span class="overlay-text">Contact</span>
+                <span class="overlay-arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+        <div class="overlay-menu-footer">
+            <span>Abdullah Rashid &copy; 2026</span>
+        </div>
+    </div>
 
     <!-- Section 1: Hero -->
     <section id="hero" class="reference-hero">
@@ -98,125 +143,297 @@
                 <h2 class="section-title">Professional Experience</h2>
             </div>
 
-            <div class="horizontal-scroll-container">
-                <div class="exp-list">
+            <!-- Glowing Timeline -->
+            <div class="timeline-wrapper">
+                <div class="timeline-line">
+                    <div class="timeline-glow"></div>
+                </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Oct 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Campus Ambassador</h3>
-                            <span class="exp-org">The TalentBeacon</span>
-                            <p class="exp-desc">
-                                Representing the organization to foster student engagement, organize events, and bridge
-                                the gap between emerging talent and industry opportunities.
-                            </p>
+                <div class="timeline-grid">
+
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">01</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Campus Ambassador</h3>
+                            </div>
+                            <p class="project-tagline">The TalentBeacon</p>
+                            <p class="exp-date-inline">Oct 2025 - Present</p>
+                            <p class="project-desc">Representing the organization to foster student engagement, organize events, and bridge the gap between emerging talent and industry opportunities.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Jan 2026 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Finance Head</h3>
-                            <span class="exp-org">FCIT Robotics Society</span>
-                            <p class="exp-desc">
-                                Managing the society's finances.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">02</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Finance Head</h3>
+                            </div>
+                            <p class="project-tagline">FCIT Robotics Society</p>
+                            <p class="exp-date-inline">Jan 2026 - Present</p>
+                            <p class="project-desc">Managing the society's finances.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Dec 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Media Head</h3>
-                            <span class="exp-org">Pioneer Debating Society</span>
-                            <p class="exp-desc">
-                                Leading the media and promotional campaigns.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">03</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Media Head</h3>
+                            </div>
+                            <p class="project-tagline">Pioneer Debating Society</p>
+                            <p class="exp-date-inline">Dec 2025 - Present</p>
+                            <p class="project-desc">Leading media and promotional campaigns for Punjab University's premier debating society — the main debating body representing all 152 departments and thousands of students across the university.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Nov 2024 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Event Organizer & Media Team Member</h3>
-                            <span class="exp-org">Event Management Society (EMS) PUCIT</span>
-                            <p class="exp-desc">
-                                Organizing and executing major campus events (Nov '25 - Present), ensuring smooth
-                                logistics. Previously served in the Media Team (Nov '24 - Nov '25). Lahore, Punjab,
-                                Pakistan.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">04</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Event Organizer & Media Team</h3>
+                            </div>
+                            <p class="project-tagline">Event Management Society (EMS) PUCIT</p>
+                            <p class="exp-date-inline">Nov 2024 - Present</p>
+                            <p class="project-desc">Organizing and executing major campus events (Nov '25 - Present), ensuring smooth logistics. Previously served in the Media Team (Nov '24 - Nov '25).</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Oct 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Post Production Head</h3>
-                            <span class="exp-org">FCIT Information and Media Society</span>
-                            <p class="exp-desc">
-                                Leading post-production workflows. Managing video editing teams and ensuring
-                                high-quality media deliverables.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">05</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Post Production Head</h3>
+                            </div>
+                            <p class="project-tagline">FCIT Information and Media Society</p>
+                            <p class="exp-date-inline">Oct 2025 - Present</p>
+                            <p class="project-desc">Leading post-production workflows. Managing video editing teams and ensuring high-quality media deliverables.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Sep 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Teaching Assistant (AICT & Programming Fundamentals)</h3>
-                            <span class="exp-org">PUCIT FCIT</span>
-                            <p class="exp-desc">
-                                Assisting in two core courses: Programming Fundamentals and Applications of ICT (AICT).
-                                Mentoring students, conducting lab sessions, and grading.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">06</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Teaching Assistant</h3>
+                            </div>
+                            <p class="project-tagline">PUCIT FCIT — AICT & Programming Fundamentals</p>
+                            <p class="exp-date-inline">Sep 2025 - Present</p>
+                            <p class="project-desc">Assisting in two core courses: Programming Fundamentals and Applications of ICT (AICT). Mentoring students, conducting lab sessions, and grading.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Mar 2025 - Present</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Content Creator</h3>
-                            <span class="exp-org">PUCon '24</span>
-                            <p class="exp-desc">
-                                Lahore, Punjab, Pakistan. Content creation for event highlights and marketing.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">07</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Content Creator</h3>
+                            </div>
+                            <p class="project-tagline">PUCon '24</p>
+                            <p class="exp-date-inline">Mar 2025 - Present</p>
+                            <p class="project-desc">Content creation for event highlights and marketing.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Oct 2025 - Dec 2025</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">PsiFi XVII Campus Ambassador</h3>
-                            <span class="exp-org">SPADES</span>
-                            <p class="exp-desc">
-                                Represented and promoted the mega-event across campus.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">08</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">PsiFi XVII Campus Ambassador</h3>
+                            </div>
+                            <p class="project-tagline">SPADES</p>
+                            <p class="exp-date-inline">Oct 2025 - Dec 2025</p>
+                            <p class="project-desc">Represented and promoted the mega-event across campus.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Apr 2025 - Jun 2025</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Campus Ambassador</h3>
-                            <span class="exp-org">TechnoVerse CUI Lahore</span>
-                            <p class="exp-desc">
-                                Acting as the primary liaison between PUCIT and TechnoVerse.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">09</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Campus Ambassador</h3>
+                            </div>
+                            <p class="project-tagline">TechnoVerse CUI Lahore</p>
+                            <p class="exp-date-inline">Apr 2025 - Jun 2025</p>
+                            <p class="project-desc">Acting as the primary liaison between PUCIT and TechnoVerse.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Feb 2025 - Mar 2025</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Coordinator</h3>
-                            <span class="exp-org">FCIT NC SPORTS</span>
-                            <p class="exp-desc">
-                                Coordinated sports events, scheduling, and team management. Lahore, Punjab, Pakistan.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">10</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Coordinator</h3>
+                            </div>
+                            <p class="project-tagline">FCIT NC SPORTS</p>
+                            <p class="exp-date-inline">Feb 2025 - Mar 2025</p>
+                            <p class="project-desc">Coordinated sports events, scheduling, and team management.</p>
                         </div>
                     </div>
 
                 </div>
+            </div>
+
+            <div class="view-all-wrapper">
+                <a href="https://www.linkedin.com/in/abdullah-rashid-a51249332" target="_blank" class="view-all-btn magnetic-btn" data-strength="15">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" style="position: relative; overflow: hidden;">
+        <div class="marquee-container" style="top: 25%;">
+            <div class="marquee-text">RISKIT • HALALFINANCE • BACHAT • JUGAR-AI • </div>
+            <div class="marquee-text">RISKIT • HALALFINANCE • BACHAT • JUGAR-AI • </div>
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="section-header reveal">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Projects</h2>
+            </div>
+
+            <!-- Glowing Timeline -->
+            <div class="timeline-wrapper">
+                <div class="timeline-line">
+                    <div class="timeline-glow"></div>
+                </div>
+
+                <div class="projects-grid timeline-grid">
+
+                <!-- Project 1: !RiskIT -->
+                <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="6" data-tilt-speed="400">
+                    <div class="project-number">01</div>
+                    <div class="project-glow"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-name">!RiskIT</h3>
+                            <div class="project-links">
+                                <a href="https://lnkd.in/d9mWv2Kv" target="_blank" class="project-link-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://lnkd.in/dDkQW4qD" target="_blank" class="project-link-icon" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="project-tagline">AI-Powered Financial War Room</p>
+                        <p class="project-desc">Enter investment amount, time horizon & market — get 10 AI-selected, risk-aware, Sharia-compliant stock recommendations. Features portfolio architect, asset comparator, 24hr market pulse & ethical guardrails.</p>
+                        <div class="project-tech">
+                            <span>React 19</span>
+                            <span>Tailwind CSS</span>
+                            <span>Groq API</span>
+                            <span>Glassmorphism</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: HalalFinance.AI -->
+                <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="6" data-tilt-speed="400">
+                    <div class="project-number">02</div>
+                    <div class="project-glow"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-name">HalalFinance.AI</h3>
+                            <div class="project-links">
+                                <a href="https://lnkd.in/ea3nnakE" target="_blank" class="project-link-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://lnkd.in/eQXfu2-3" target="_blank" class="project-link-icon" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="project-tagline">Islamic Banking RAG Chatbot</p>
+                        <p class="project-desc">Document-grounded assistant answering strictly from uploaded Islamic banking PDFs. Multi-PDF ingestion, source citations with page numbers, confidence indicators, analytics dashboard & multi-language support.</p>
+                        <div class="project-tech">
+                            <span>LLaMA 3.1</span>
+                            <span>Groq</span>
+                            <span>Gradio</span>
+                            <span>HuggingFace</span>
+                            <span>RAG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Bachat.AI -->
+                <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="6" data-tilt-speed="400">
+                    <div class="project-number">03</div>
+                    <div class="project-glow"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-name">Bachat.AI</h3>
+                            <div class="project-links">
+                                <a href="https://lnkd.in/eY5G_jFZ" target="_blank" class="project-link-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://lnkd.in/ezp2GC_4" target="_blank" class="project-link-icon" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="project-tagline">Pakistan's LLM-Powered Financial Advisor</p>
+                        <p class="project-desc">Intelligent chatbot for PKR budgeting, PSX/KSE-100 insights & halal investing. Adaptive communication styles, built-in Sharia screening, and exportable chat history.</p>
+                        <div class="project-tech">
+                            <span>LLaMA 3.3 70B</span>
+                            <span>Groq API</span>
+                            <span>Gradio</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Jugar-AI -->
+                <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="6" data-tilt-speed="400">
+                    <div class="project-number">04</div>
+                    <div class="project-glow"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-name">Jugar-AI</h3>
+                            <div class="project-links">
+                                <a href="https://lnkd.in/deg7bztT" target="_blank" class="project-link-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://lnkd.in/d3yFHjq3" target="_blank" class="project-link-icon" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="project-tagline">Financial News Sentiment Decoder</p>
+                        <p class="project-desc">NLP pipeline decoding financial news into Bullish or Bearish signals. TF-IDF vectorization with Logistic Regression classification, interactive Streamlit dashboard for real-time analysis.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>NLP</span>
+                            <span>Streamlit</span>
+                            <span>Scikit-learn</span>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+            <div class="view-all-wrapper" style="gap: 1rem; flex-wrap: wrap;">
+                <a href="https://github.com/abdullahrashid23" target="_blank" class="view-all-btn magnetic-btn" data-strength="15">
+                    <i class="fab fa-github"></i>
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/abdullah-rashid-a51249332" target="_blank" class="view-all-btn magnetic-btn" data-strength="15">
+                    <i class="fab fa-linkedin-in"></i>
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -233,33 +450,50 @@
                 <h2 class="section-title">Education</h2>
             </div>
 
-            <div class="horizontal-scroll-container">
-                <div class="exp-list">
+            <!-- Glowing Timeline -->
+            <div class="timeline-wrapper">
+                <div class="timeline-line">
+                    <div class="timeline-glow"></div>
+                </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Sep 2024 - Oct 2028</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Bachelor's degree, Data Science</h3>
-                            <span class="exp-org">University of the Punjab</span>
-                            <p class="exp-desc">
-                                Detailed focus on AI, data analytics, and computational economics. Active participant in
-                                various tech societies.
-                            </p>
+                <div class="timeline-grid">
+
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">01</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">Bachelor's in Data Science</h3>
+                            </div>
+                            <p class="project-tagline">University of the Punjab</p>
+                            <p class="exp-date-inline">Sep 2024 - Oct 2028</p>
+                            <p class="project-desc">Detailed focus on AI, data analytics, and computational economics. Active participant in various tech societies.</p>
                         </div>
                     </div>
 
-                    <div class="exp-card spotlight reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                        <div class="exp-date">Mar 2022 - May 2024</div>
-                        <div>
-                            <h3 class="exp-role hover-trigger">Intermediate in Computer Science</h3>
-                            <span class="exp-org">Punjab Group Of Colleges Bahria Town Lahore</span>
-                            <p class="exp-desc">
-                                Foundational studies in computer science and mathematics.
-                            </p>
+                    <div class="project-card spotlight timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                        <div class="project-number">02</div>
+                        <div class="project-glow"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-name">ICS — Intermediate in Computer Science</h3>
+                            </div>
+                            <p class="project-tagline">Punjab Group Of Colleges Bahria Town Lahore</p>
+                            <p class="exp-date-inline">Mar 2022 - May 2024</p>
+                            <p class="project-desc">Foundational studies in computer science and mathematics.</p>
                         </div>
                     </div>
 
                 </div>
+            </div>
+
+            <div class="view-all-wrapper">
+                <a href="https://www.linkedin.com/in/abdullah-rashid-a51249332" target="_blank" class="view-all-btn magnetic-btn" data-strength="15">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -323,6 +557,8 @@
                 </a>
 
                 <div class="social-dock">
+                    <a href="https://github.com/abdullahrashid23" target="_blank"
+                        class="social-btn"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/abdullah-rashid-a51249332" target="_blank"
                         class="social-btn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://www.instagram.com/abdullah.rashid.1" target="_blank" class="social-btn"><i
